@@ -2,7 +2,6 @@
   "name": "react-sdk",
   "version": "24.2.11",
   "private": true,
-  "homepage": "https://shzolly.github.io/react-sdk-mediacoplus",
   "scripts": {
     "_comment_SDK_install_build_run_commands": "The following are public commands to clean, install, build, and run the SDK",
     "build:dev": "npm run _internal-check-node-version && run-p -l  fix _internal-build-dev-only",
@@ -52,8 +51,7 @@
     "_internal-install-sdk": "echo \"installing...\" && npm install --loglevel notice",
     "_internal-test-functional": "npm run test:functional:local:sdk-r --prefix node_modules/@pega/dx-component-builder-sdk",
     "_internal-build-jest-assets": "dx-component-builder-sdk buildJestAssets",
-    "deploy": "gh-pages -d dist",
-    "predeploy": "npm run build:prod"
+    "build:vercel": "webpack --mode development"
   },
   "dependencies": {
     "@emotion/react": "^11.13.3",
