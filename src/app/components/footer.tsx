@@ -5,7 +5,10 @@ const Footer = () => {
         <a href='/' className='flex justify-center items-center text-2xl font-semibold text-gray-900 dark:text-white'>
           Terms of Service
         </a>
-        <p className='my-6 text-gray-500 dark:text-gray-400'>Not all products, pricing, and services are available in all areas. Pricing and actual speeds may vary. Internet speeds based on wired connection. Restrictions apply.</p>
+        <p className='my-6 text-gray-500 dark:text-gray-400'>
+          Not all products, pricing, and services are available in all areas. Pricing and actual speeds may vary. Internet speeds based on wired
+          connection. Restrictions apply.
+        </p>
         <ul className='flex flex-wrap justify-center items-center mb-6 text-gray-900 dark:text-white'>
           <li>
             <a href='/' className='mr-4 hover:underline md:mr-6'>

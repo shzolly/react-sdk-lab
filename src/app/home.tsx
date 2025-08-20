@@ -1,9 +1,6 @@
-/* eslint-disable jsx-a11y/img-redundant-alt */
-/* eslint-disable react/no-unescaped-entities */
-
 import Header from './components/header';
 import Footer from './components/footer';
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 import { Button } from '../design-system/ui/button';
 import { TextField, Box, Typography } from '@mui/material';
 import Divider from '@mui/material/Divider';
@@ -17,8 +14,8 @@ export default function Home() {
   const [showPega, setShowPega] = useState('Info'); // Info, Pega, Confirmation
   const isPegaReady = useConstellation();
 
-  const [appName, setAppName] = useState<string>("");
-  const [sdkVersion, setSDKVersion] = useState<string>("");
+  const [appName, setAppName] = useState<string>('');
+  const [sdkVersion, setSDKVersion] = useState<string>('');
   const [promotion, setPromotion] = useState<IPromotion[]>([]);
   useEffect(() => {
     if (isPegaReady) {
@@ -79,24 +76,24 @@ export default function Home() {
 
   const handleCheckAvailability = async () => {
     if (isPegaReady) {
-      const dataViewName = "D_CheckAvailability";
+      const dataViewName = 'D_CheckAvailability';
       const parameters = {
-        address: yourAddress,
+        address: yourAddress
       };
-      const context = "app/primary_1";
+      const context = 'app/primary_1';
       const options = {
-        invalidateCache: true,
+        invalidateCache: true
       };
       PCore.getDataPageUtils()
         .getPageDataAsync(dataViewName, context, parameters, options)
-        .then((page) => {
+        .then(page => {
           // handle the response
           console.log('getPageDataAsync response: ', page);
-          navigate("/availability", { state: { page, address: yourAddress } });
+          navigate('/availability', { state: { page, address: yourAddress } });
         })
-        .catch((error) => {
+        .catch(error => {
           console.log(error);
-          navigate("/availability", { state: { error: "Failed to fetch", address: yourAddress } });
+          navigate('/availability', { state: { error: 'Failed to fetch', address: yourAddress } });
         });
     }
   };
@@ -134,14 +131,14 @@ export default function Home() {
               your references, you can use it as a jump start. Pull requests are welcome!
             </p>
             <div className='flex flex-col mb-4 lg:mb-8 space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4'>
-              <Box sx={{ width: 500, maxWidth: "100%" }}>
+              <Box sx={{ width: 500, maxWidth: '100%' }}>
                 <TextField
-                  size="small"
+                  size='small'
                   fullWidth
                   value={yourAddress}
-                  onChange={(e) => setYourAddress(e.target.value)}
-                  label="Your street address"
-                  id="yourAddress"
+                  onChange={e => setYourAddress(e.target.value)}
+                  label='Your street address'
+                  id='yourAddress'
                 />
               </Box>
               <Button variant='default' onClick={handleCheckAvailability}>
@@ -168,62 +165,49 @@ export default function Home() {
             </div>
             <div className='grid mb-8 lg:mb-12 lg:grid-cols-4 gap-8'>
               {promotion.map(item => (
-              <figure key={item.pyGUID} className='flex flex-col justify-center items-center p-8 rounded-lg text-left bg-gray-50 border-b border-gray-200 md:p-12 lg:border-r dark:bg-gray-800 dark:border-gray-700
-             hover:scale-105 hover:shadow-lg transition-transform duration-300 ease-in-out'>
-                <blockquote className='mx-auto mb-8 max-w-2xl text-gray-900 dark:text-white'>
-                  <Typography
-                    variant="overline"
-                    sx={{ letterSpacing: 1.2 }}
-                    color="text.secondary"
-                  >
-                    Code: {item.PromotionCode}
-                  </Typography>
-                  <Typography variant="h5" fontWeight={700} gutterBottom>
-                    {item.PromotionName}
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary" mb={2}>
-                    {item.ApplicableServices}
-                  </Typography>
-                  <Box display="flex" alignItems="flex-end" columnGap={1} mb={2}>
-                    <Typography variant="h4" fontWeight={800} lineHeight={1}>
-                      {item.DiscountValue}
+                <figure
+                  key={item.pyGUID}
+                  className='flex flex-col justify-center items-center p-8 rounded-lg text-left bg-gray-50 border-b border-gray-200 md:p-12 lg:border-r dark:bg-gray-800 dark:border-gray-700
+             hover:scale-105 hover:shadow-lg transition-transform duration-300 ease-in-out'
+                >
+                  <blockquote className='mx-auto mb-8 max-w-2xl text-gray-900 dark:text-white'>
+                    <Typography variant='overline' sx={{ letterSpacing: 1.2 }} color='text.secondary'>
+                      Code: {item.PromotionCode}
                     </Typography>
-                    <Typography variant="caption" color="text.secondary">
-                      {item.DiscountType}
+                    <Typography variant='h5' fontWeight={700} gutterBottom>
+                      {item.PromotionName}
                     </Typography>
-                  </Box>
-                  <Divider>Terms</Divider>
-                  <Typography
-                    variant="caption"
-                    color="text.secondary"
-                    display="block"
-                    mt={1}
-                  >
-                    {item.EligibilityCriteria} {item.TermsAndConditions}
-                  </Typography>
-                </blockquote>
-                <figcaption className='flex justify-center items-center space-x-3'>
-                  <div className='space-y-0.5 font-medium dark:text-white text-left'>
-                    <Button variant='default' onClick={() => handleCreateCase(item.PromotionCode)}>
-                      New Service
-                    </Button>
-                  </div>
-                </figcaption>
-              </figure>
+                    <Typography variant='body2' color='text.secondary' mb={2}>
+                      {item.ApplicableServices}
+                    </Typography>
+                    <Box display='flex' alignItems='flex-end' columnGap={1} mb={2}>
+                      <Typography variant='h4' fontWeight={800} lineHeight={1}>
+                        {item.DiscountValue}
+                      </Typography>
+                      <Typography variant='caption' color='text.secondary'>
+                        {item.DiscountType}
+                      </Typography>
+                    </Box>
+                    <Divider>Terms</Divider>
+                    <Typography variant='caption' color='text.secondary' display='block' mt={1}>
+                      {item.EligibilityCriteria} {item.TermsAndConditions}
+                    </Typography>
+                  </blockquote>
+                  <figcaption className='flex justify-center items-center space-x-3'>
+                    <div className='space-y-0.5 font-medium dark:text-white text-left'>
+                      <Button variant='default' onClick={() => handleCreateCase(item.PromotionCode)}>
+                        New Service
+                      </Button>
+                    </div>
+                  </figcaption>
+                </figure>
               ))}
             </div>
           </div>
         </section>
         <section className='bg-white dark:bg-gray-900'>
           <div className='py-2 px-2 mx-auto max-w-screen-xl text-center'>
-            {isPegaReady ? (
-              <div
-                id='pega-root'
-                className={classNames('', { hidden: showPega !== 'Pega' })}
-              />
-            ) : (
-              <Loading />
-            )}
+            {isPegaReady ? <div id='pega-root' className={classNames('', { hidden: showPega !== 'Pega' })} /> : <Loading />}
           </div>
         </section>
       </div>

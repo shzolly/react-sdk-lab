@@ -73,13 +73,17 @@ const Inventory = () => {
       {isPegaReady ? (
         <div className='flex-grow py-12 px-6 dark:bg-gray-900'>
           <div className='container mx-auto'>
-            <Alert severity="success">
+            <Alert severity='success'>
               <AlertTitle>PCore.getDataPageUtils().getDataAsync()</AlertTitle>
-              The Inventory items are rendered from a list Data Page directly. <br/>
+              The Inventory items are rendered from a list Data Page directly. <br />
               Reference:
-                <Link href="https://docs.pega.com/bundle/pcore-pconnect/page/pcore-pconnect-public-apis/api/getdataasync-datapagename-context-parameters-paging-query-options.html" target="_blank" underline="hover">
-                  https://docs.pega.com/bundle/pcore-pconnect/page/pcore-pconnect-public-apis/api/getdataasync-datapagename-context-parameters-paging-query-options.html
-                </Link>
+              <Link
+                href='https://docs.pega.com/bundle/pcore-pconnect/page/pcore-pconnect-public-apis/api/getdataasync-datapagename-context-parameters-paging-query-options.html'
+                target='_blank'
+                underline='hover'
+              >
+                https://docs.pega.com/bundle/pcore-pconnect/page/pcore-pconnect-public-apis/api/getdataasync-datapagename-context-parameters-paging-query-options.html
+              </Link>
             </Alert>
             <div className='flex flex-col lg:flex-row items-center gap-y-2 gap-x-2 justify-between mb-8'>
               <h1 className='text-2xl lg:text-3xl font-bold text-[#333] dark:text-white'>Explore our inventories</h1>
@@ -94,8 +98,12 @@ const Inventory = () => {
                     <h5 className='mb-2 text-xl font-bold tracking-wide text-neutral-800 dark:text-neutral-50'>{inventory.DeviceModel}</h5>
 
                     <p className='mb-2 text-base text-neutral-500 dark:text-neutral-300'>
-                      <div>Manufacturer: <span className='font-semibold'>{inventory.Manufacturer}</span></div>
-                      <div>Operating: <span className='font-semibold'>{inventory.OperatingSystem}</span></div>
+                      <div>
+                        Manufacturer: <span className='font-semibold'>{inventory.Manufacturer}</span>
+                      </div>
+                      <div>
+                        Operating: <span className='font-semibold'>{inventory.OperatingSystem}</span>
+                      </div>
                     </p>
 
                     <Button variant='accent'>Show details</Button>

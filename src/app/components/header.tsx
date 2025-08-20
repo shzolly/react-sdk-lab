@@ -7,8 +7,8 @@ const Header = () => {
   const [isMobleMenuOpen, setIsMobileMenuOpen] = useState(false);
   return (
     <header>
-      <Alert severity="info" onClose={() => {}}>
-        <Link href="/package" target="_blank" underline="hover">
+      <Alert severity='info' onClose={() => {}}>
+        <Link href='/package' target='_blank' underline='hover'>
           Click here to view original MediaCo Embedded portal.
         </Link>
       </Alert>
@@ -103,7 +103,10 @@ const Header = () => {
           </div>
 
           {isMobleMenuOpen ? (
-            <div className='justify-between items-center w-full lg:hidden lg:w-auto lg:order-1 bg-gray-100 dark:bg-gray-900 rounded-lg p-4' id='mobile-menu-2'>
+            <div
+              className='justify-between items-center w-full lg:hidden lg:w-auto lg:order-1 bg-gray-100 dark:bg-gray-900 rounded-lg p-4'
+              id='mobile-menu-2'
+            >
               <ul className='flex flex-col mt-4 text-lg font-mendium lg:flex-row lg:space-x-8 lg:mt-0'>
                 <li>
                   <a

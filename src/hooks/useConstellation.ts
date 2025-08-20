@@ -42,7 +42,7 @@ function useConstellation() {
       if (!sdkConfigAuth.mashupClientId && sdkConfigAuth.customAuthType === 'BasicTO') {
         const now = new Date();
         const expTime = new Date(now.getTime() + 5 * 60 * 1000);
-        let sISOTime = `${expTime.toISOString().split('.')[0]}Z`.replace(/[-:]/g, '');
+        const sISOTime = `${expTime.toISOString().split('.')[0]}Z`.replace(/[-:]/g, '');
         const sB64 = window.btoa(`${sdkConfigAuth.mashupUserIdentifier}:${window.atob(sdkConfigAuth.mashupPassword)}:${sISOTime}`);
         sdkSetAuthHeader(`Basic ${sB64}`);
       }

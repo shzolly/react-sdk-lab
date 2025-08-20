@@ -6,8 +6,8 @@ export interface IInventory {
   StorageCapacity: number;
   BatteryCapacity: number;
   Price: number;
-  RAM:number;
-  pyGUID:string;
+  RAM: number;
+  pyGUID: string;
 }
 
 export interface IPromotion {
@@ -18,7 +18,7 @@ export interface IPromotion {
   DiscountType: string;
   DiscountValue: number;
   TermsAndConditions: string;
-  pyGUID:string;
+  pyGUID: string;
 }
 
 export interface IJourney {

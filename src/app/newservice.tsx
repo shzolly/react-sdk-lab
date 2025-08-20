@@ -114,16 +114,14 @@ export default function NewService() {
     <>
       <Header />
 
-      <div className="flex-grow">
-        <section className="bg-white dark:bg-gray-800">
-          <div className="py-8 px-4 mx-auto max-w-screen-xl lg:px-6">
+      <div className='flex-grow'>
+        <section className='bg-white dark:bg-gray-800'>
+          <div className='py-8 px-4 mx-auto max-w-screen-xl lg:px-6'>
             <div className='max-w-screen-md'>
               <h2 className='mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white'>New Service</h2>
               <p className='mb-8 text-gray-700 text-lg dark:text-gray-400'>
                 It shall take only couple of minutes to complete.
-                {reloading && (
-                  <Loading />
-                )}
+                {reloading && <Loading />}
               </p>
               <div
                 id='newservice-info'
@@ -134,7 +132,7 @@ export default function NewService() {
                   }
                 )}
               >
-                <Link href="#" underline="always">
+                <Link href='#' underline='always'>
                   Go Back
                 </Link>
               </div>
@@ -159,7 +157,7 @@ export default function NewService() {
                   <span className='font-extrabold'>{caseId}</span>
                   {'. '}Please use it in any of followup conversation.
                   <div>
-                    <Link href="#" underline="always">
+                    <Link href='#' underline='always'>
                       Go Back
                     </Link>
                   </div>

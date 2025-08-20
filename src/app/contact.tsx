@@ -32,19 +32,23 @@ const Contact = () => {
     };
 
     const { invokeCustomRestApi } = PCore.getRestClient();
-    invokeCustomRestApi("/api/application/v2/cases", {
-      method: "POST",
-      body: caseBody,
-      headers: {},
-      withoutDefaultHeaders: false
-    }, 'app/primary_1')
-    .then((response: any) => {
-      console.log('invokeCustomRestApi response:', response)
-      setCaseID(response.data.ID.split(' ')[1]); // if respond ID is 'RST-MEDIACOPLUS-WORK I-1011', display 'I-1011'
-    })
-    .catch((error) => {
-      console.log('invokeCustomRestApi error:', error)
-    });
+    invokeCustomRestApi(
+      '/api/application/v2/cases',
+      {
+        method: 'POST',
+        body: caseBody,
+        headers: {},
+        withoutDefaultHeaders: false
+      },
+      'app/primary_1'
+    )
+      .then((response: any) => {
+        console.log('invokeCustomRestApi response:', response);
+        setCaseID(response.data.ID.split(' ')[1]); // if respond ID is 'RST-MEDIACOPLUS-WORK I-1011', display 'I-1011'
+      })
+      .catch(error => {
+        console.log('invokeCustomRestApi error:', error);
+      });
   }
 
   return (
@@ -54,13 +58,18 @@ const Contact = () => {
         <div className='flex-grow bg-white dark:bg-gray-900'>
           <section className='w-full py-6 md:py-8'>
             <div className='container items-start justify-start gap-4 px-4 text-left md:px-6 lg:gap-6'>
-              <Alert severity="success">
+              <Alert severity='success'>
                 <AlertTitle>PCore.getRestClient().invokeCustomRestApi()</AlertTitle>
-                Inquery case takes data from React fields, case is created in the background. Using invokeCustomRestApi to call Pega OOTB Service REST. <br/>
+                Inquery case takes data from React fields, case is created in the background. Using invokeCustomRestApi to call Pega OOTB Service
+                REST. <br />
                 Reference:
-                  <Link href="https://docs.pega.com/bundle/pcore-pconnect/page/pcore-pconnect-public-apis/api/invokecustomrestapi-endpointurl-config-context.html" target="_blank" underline="hover">
-                    https://docs.pega.com/bundle/pcore-pconnect/page/pcore-pconnect-public-apis/api/invokecustomrestapi-endpointurl-config-context.html
-                  </Link>
+                <Link
+                  href='https://docs.pega.com/bundle/pcore-pconnect/page/pcore-pconnect-public-apis/api/invokecustomrestapi-endpointurl-config-context.html'
+                  target='_blank'
+                  underline='hover'
+                >
+                  https://docs.pega.com/bundle/pcore-pconnect/page/pcore-pconnect-public-apis/api/invokecustomrestapi-endpointurl-config-context.html
+                </Link>
               </Alert>
             </div>
             <div className='py-8 lg:py-16 px-4 mx-auto max-w-screen-md'>

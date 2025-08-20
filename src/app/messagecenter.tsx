@@ -25,21 +25,23 @@ const MessageCenter = () => {
       <div className='flex-grow dark:bg-gray-900'>
         <section className='bg-white py-6 md:py-8 dark:bg-gray-800'>
           <div className='container items-start justify-start gap-4 px-4 text-left md:px-6 lg:gap-6'>
-            <Alert severity="success">
+            <Alert severity='success'>
               <AlertTitle>PCore.getMashupApi().openPage()</AlertTitle>
-              OOTB Landing page 'My Work' is rendered by Mashup API. <br/>
+              OOTB Landing page 'My Work' is rendered by Mashup API. <br />
               Reference:
-                <Link href="https://docs.pega.com/bundle/pcore-pconnect/page/pcore-pconnect-public-apis/api/openpage-pagename-classname-targetcontext.html" target="_blank" underline="hover">
-                  https://docs.pega.com/bundle/pcore-pconnect/page/pcore-pconnect-public-apis/api/openpage-pagename-classname-targetcontext.html
-                </Link>
+              <Link
+                href='https://docs.pega.com/bundle/pcore-pconnect/page/pcore-pconnect-public-apis/api/openpage-pagename-classname-targetcontext.html'
+                target='_blank'
+                underline='hover'
+              >
+                https://docs.pega.com/bundle/pcore-pconnect/page/pcore-pconnect-public-apis/api/openpage-pagename-classname-targetcontext.html
+              </Link>
             </Alert>
           </div>
           <div className='py-8 px-4 mx-auto max-w-screen-xl lg:px-6'>
             <div className='max-w-screen-md'>
               <h2 className='mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white'>Message Center</h2>
-              <p className='mb-4 text-gray-700 text-lg dark:text-gray-400'>
-                Your worklist
-              </p>
+              <p className='mb-4 text-gray-700 text-lg dark:text-gray-400'>Your worklist</p>
             </div>
           </div>
         </section>

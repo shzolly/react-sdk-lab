@@ -28,7 +28,7 @@ export default function Support() {
   function handleCreateCase() {
     setShowPega('Pega');
     getSdkConfig().then(sdkConfig => {
-      let mashupCaseType = "RST-MediaCoPlus-Work-Support";
+      let mashupCaseType = 'RST-MediaCoPlus-Work-Support';
       if (!mashupCaseType) {
         const caseTypes = (PCore.getEnvironmentInfo() as any).environmentInfoObject.pyCaseTypeList;
         mashupCaseType = caseTypes[1].pyWorkTypeImplementationClassName;
@@ -57,13 +57,17 @@ export default function Support() {
       <div className='flex-grow dark:bg-gray-900'>
         <section className='bg-white w-full py-6 md:py-8 dark:bg-gray-800'>
           <div className='container items-start justify-start gap-4 px-4 text-left md:px-6 lg:gap-6'>
-            <Alert severity="success">
+            <Alert severity='success'>
               <AlertTitle>PCore.getMashupApi().createCase()</AlertTitle>
-              The Incident case is created by calling Mashup API. <br/>
+              The Incident case is created by calling Mashup API. <br />
               Reference:
-                <Link href="https://docs.pega.com/bundle/pcore-pconnect/page/pcore-pconnect-public-apis/api/createcase-classname-targetcontext-options.html" target="_blank" underline="hover">
-                  https://docs.pega.com/bundle/pcore-pconnect/page/pcore-pconnect-public-apis/api/createcase-classname-targetcontext-options.html
-                </Link>
+              <Link
+                href='https://docs.pega.com/bundle/pcore-pconnect/page/pcore-pconnect-public-apis/api/createcase-classname-targetcontext-options.html'
+                target='_blank'
+                underline='hover'
+              >
+                https://docs.pega.com/bundle/pcore-pconnect/page/pcore-pconnect-public-apis/api/createcase-classname-targetcontext-options.html
+              </Link>
             </Alert>
           </div>
           <div className='py-8 px-4 mx-auto max-w-screen-xl lg:px-6'>
@@ -114,7 +118,7 @@ export default function Support() {
                   <span className='font-extrabold'>{caseId}</span>
                   {'. '}Please use it in any of followup conversation.
                   <div>
-                    <Link href="#" underline="always">
+                    <Link href='#' underline='always'>
                       Go Back
                     </Link>
                   </div>

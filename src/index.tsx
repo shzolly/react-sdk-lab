@@ -21,7 +21,7 @@ if (outletElement) {
     <BrowserRouter
       future={{
         v7_startTransition: true,
-        v7_relativeSplatPath: true,
+        v7_relativeSplatPath: true
       }}
     >
       <Routes>
@@ -35,7 +35,7 @@ if (outletElement) {
         <Route path={`${baseURL}support`} element={<Support />} />
         <Route path={`${baseURL}contact`} element={<Contact />} />
         <Route path={`${baseURL}messagecenter`} element={<MessageCenter />} />
-        <Route path="*" element={<Home />} /> {/* <-- fix: render a component */}
+        <Route path='*' element={<Home />} /> {/* <-- fix: render a component */}
       </Routes>
     </BrowserRouter>,
     document.getElementById('outlet')

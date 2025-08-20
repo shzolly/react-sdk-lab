@@ -9,7 +9,7 @@ import { Alert, AlertTitle, Link } from '@mui/material';
 const Company = () => {
   const isPegaReady = useConstellation();
   const [journeys, setJourneys] = useState<IJourney[]>([]);
-  const [appName, setAppName] = useState<string>("");
+  const [appName, setAppName] = useState<string>('');
 
   console.log('IsPegaReady', isPegaReady);
 
@@ -39,13 +39,17 @@ const Company = () => {
       <div className='flex-grow dark:bg-gray-900'>
         <section className='w-full py-6 md:py-8'>
           <div className='container items-start justify-start gap-4 px-4 text-left md:px-6 lg:gap-6'>
-            <Alert severity="success">
+            <Alert severity='success'>
               <AlertTitle>PCore.getRestClient().invokeCustomRestApi()</AlertTitle>
-              The Company Journey items are rendered from a Data Page wrapped by a custom Service REST. <br/>
+              The Company Journey items are rendered from a Data Page wrapped by a custom Service REST. <br />
               Reference:
-                <Link href="https://docs.pega.com/bundle/pcore-pconnect/page/pcore-pconnect-public-apis/api/invokecustomrestapi-endpointurl-config-context.html" target="_blank" underline="hover">
-                  https://docs.pega.com/bundle/pcore-pconnect/page/pcore-pconnect-public-apis/api/invokecustomrestapi-endpointurl-config-context.html
-                </Link>
+              <Link
+                href='https://docs.pega.com/bundle/pcore-pconnect/page/pcore-pconnect-public-apis/api/invokecustomrestapi-endpointurl-config-context.html'
+                target='_blank'
+                underline='hover'
+              >
+                https://docs.pega.com/bundle/pcore-pconnect/page/pcore-pconnect-public-apis/api/invokecustomrestapi-endpointurl-config-context.html
+              </Link>
             </Alert>
           </div>
           <div className='container grid items-start justify-start gap-4 px-4 text-left md:px-6 lg:gap-6'>
