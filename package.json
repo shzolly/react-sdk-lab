@@ -51,7 +51,7 @@
     "_internal-install-sdk": "echo \"installing...\" && npm install --loglevel notice",
     "_internal-test-functional": "npm run test:functional:local:sdk-r --prefix node_modules/@pega/dx-component-builder-sdk",
     "_internal-build-jest-assets": "dx-component-builder-sdk buildJestAssets",
-    "build:vercel": "webpack --mode development"
+    "build:vercel": "npm run build:dev"
   },
   "dependencies": {
     "@emotion/react": "^11.13.3",
