@@ -11,7 +11,7 @@ const Company = () => {
   const [journeys, setJourneys] = useState<IJourney[]>([]);
   const [appName, setAppName] = useState<string>('');
 
-  console.log('IsPegaReady', isPegaReady);
+  // console.log('IsPegaReady', isPegaReady);
 
   useEffect(() => {
     if (!isPegaReady) return;
@@ -30,7 +30,10 @@ const Company = () => {
       )) as ApiResponse<IJourney[]>;
 
       setJourneys(res.data);
-    })().catch(err => console.log('invokeCustomRestApi error:', err));
+    })().catch(err => {
+      // console.log('invokeCustomRestApi error:', err)
+      throw new Error('Error', err);
+    });
   }, [isPegaReady]);
 
   return (

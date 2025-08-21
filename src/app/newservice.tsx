@@ -1,5 +1,4 @@
-/* eslint-disable no-console */
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams } from 'react-router';
 import { useEffect, useState } from 'react';
 import classNames from 'classnames';
 import { Link } from '@mui/material';
@@ -26,11 +25,11 @@ export default function NewService() {
 
     getSdkConfig().then(sdkConfig => {
       let mashupCaseType = sdkConfig.serverConfig.appMashupCaseType;
-      console.log('mashupCaseType from config: ', mashupCaseType);
+      // console.log('mashupCaseType from config: ', mashupCaseType);
       if (!mashupCaseType) {
         const caseTypes = (PCore.getEnvironmentInfo() as any).environmentInfoObject.pyCaseTypeList;
         mashupCaseType = caseTypes[1].pyWorkTypeImplementationClassName;
-        console.log('mashupCaseType from env: ', mashupCaseType);
+        // console.log('mashupCaseType from env: ', mashupCaseType);
       }
 
       const handleCaseComplete = eventPayload => {
@@ -39,7 +38,7 @@ export default function NewService() {
       };
 
       const handleCaseCancel = () => {
-        console.log('Case Cancelled');
+        // console.log('Case Cancelled');
         setShowPega('Info');
       };
 
@@ -52,7 +51,7 @@ export default function NewService() {
 
       setShowPega('Pega');
       (PCore.getMashupApi().createCase(mashupCaseType, PCore.getConstants().APP.APP, options) as any).then(() => {
-        console.log('createCase rendering is complete');
+        // console.log('createCase rendering is complete');
       });
 
       const constants = PCore.getConstants();
@@ -137,14 +136,11 @@ export default function NewService() {
                 </Link>
               </div>
               <div className='flex flex-row align-middle items-center justify-center'>
-                {isPegaReady ? (
-                  <div
-                    id='pega-root'
-                    className={classNames('flex-grow w-full max-w-3xl', { hidden: showPega === 'Confirmation' || showPega === 'Info' })}
-                  />
-                ) : (
-                  <Loading />
-                )}
+                <div
+                  id='pega-root'
+                  className={classNames('flex-grow w-full max-w-3xl', { hidden: showPega === 'Confirmation' || showPega === 'Info' })}
+                />
+                {!isPegaReady && <Loading />}
               </div>
               <div
                 id='newservice-confirmation'

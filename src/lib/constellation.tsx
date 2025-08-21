@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 /* eslint-disable import/prefer-default-export */
-import { render } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider } from '@mui/material/styles';
 
@@ -75,7 +75,10 @@ function initialRender(inRenderObj) {
   );
 
   // Initial render of component passed in (which should be a RootContainer)
-  render(<>{theComponent}</>, target);
+  if (target) {
+    const root = createRoot(target); // <-- Use createRoot
+    root.render(<>{theComponent}</>); // <-- Use root.render
+  }
   //  setIsPegaReady(true);
   // Initial render to show that we have a PConnect and can render in the target location
   // render( <div>EmbeddedTopLevel initialRender in {domContainerID} with PConn of {componentName}</div>, target);

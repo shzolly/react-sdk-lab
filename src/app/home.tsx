@@ -1,6 +1,6 @@
 import Header from './components/header';
 import Footer from './components/footer';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 import { Button } from '../design-system/ui/button';
 import { TextField, Box, Typography } from '@mui/material';
 import Divider from '@mui/material/Divider';
@@ -9,15 +9,29 @@ import { IPromotion } from '../types/types';
 import useConstellation from '../hooks/useConstellation';
 import { useEffect, useState } from 'react';
 import classNames from 'classnames';
+import { Dialog, DialogTitle, DialogContent, DialogActions } from '@mui/material';
+import MuiButton from '@mui/material/Button';
+import { version as reactVersion } from 'react';
+import { getSdkConfig } from '@pega/auth/lib/sdk-auth-manager';
 
 export default function Home() {
   const [showPega, setShowPega] = useState('Info'); // Info, Pega, Confirmation
   const isPegaReady = useConstellation();
+  // NEW state to control the popup
+  const [openDialog, setOpenDialog] = useState(true);
 
   const [appName, setAppName] = useState<string>('');
   const [sdkVersion, setSDKVersion] = useState<string>('');
+  const [authService, setAuthService] = useState<string>('');
+  const [mashupGrantType, setMashupAuthType] = useState<string>('');
   const [promotion, setPromotion] = useState<IPromotion[]>([]);
   useEffect(() => {
+    setShowPega('Pega');
+    getSdkConfig().then((sdk: any) => {
+      const a = sdk?.authConfig || {};
+      setAuthService(a.authService || '');
+      setMashupAuthType(a.mashupGrantType || '');
+    });
     if (isPegaReady) {
       const label = PCore.getEnvironmentInfo().getApplicationLabel();
       if (label) setAppName(label);
@@ -62,7 +76,7 @@ export default function Home() {
 
       (PCore.getDataPageUtils().getDataAsync(dataViewName, 'root', parameters, paging, query) as Promise<any>)
         .then(response => {
-          console.log('DataPageUtils.getDataAsync response', response);
+          // console.log('DataPageUtils.getDataAsync response', response);
           setPromotion(response.data);
         })
         .catch(error => {
@@ -88,11 +102,12 @@ export default function Home() {
         .getPageDataAsync(dataViewName, context, parameters, options)
         .then(page => {
           // handle the response
-          console.log('getPageDataAsync response: ', page);
+          // console.log('getPageDataAsync response: ', page);
           navigate('/availability', { state: { page, address: yourAddress } });
         })
         .catch(error => {
-          console.log(error);
+          // console.log(error);
+          throw new Error('Error', error);
           navigate('/availability', { state: { error: 'Failed to fetch', address: yourAddress } });
         });
     }
@@ -106,6 +121,26 @@ export default function Home() {
   return (
     <>
       <Header />
+      <Dialog open={openDialog} onClose={() => setOpenDialog(false)} maxWidth='sm' fullWidth>
+        <DialogTitle>Welcome to {appName}! 👋</DialogTitle>
+        <DialogContent dividers>
+          <Typography variant='h6' gutterBottom>
+            Environment snapshot:
+          </Typography>
+          <Typography variant='body1'>
+            React version: <strong>{reactVersion}</strong>
+            <br />
+            Pega Constellation SDK version: <strong>{sdkVersion}</strong>
+            <br />
+            Auth service: <strong>{authService}</strong>
+            <br />
+            Mashup grant type: <strong>{mashupGrantType}</strong>
+          </Typography>
+        </DialogContent>
+        <DialogActions>
+          <MuiButton onClick={() => setOpenDialog(false)}>Close</MuiButton>
+        </DialogActions>
+      </Dialog>
       <div className='flex-grow bg-white text-black'>
         <section className='bg-white py-3 md:py-4 dark:bg-gray-900'>
           <div className='pt-8 pb-6 px-4 mx-auto max-w-screen-xl text-center lg:pt-12 lg:pb-8 lg:px-12'>
@@ -124,7 +159,7 @@ export default function Home() {
               </svg>
             </a>
             <h1 className='mb-4 text-3xl lg:text-4xl font-bold lg:font-extrabold lg:tracking-tight tracking-tighter leading-none text-gray-900 dark:text-white'>
-              Welcome to the project of {appName} - the enhanced version of Pega Constellation SDK ({sdkVersion}) sample application!
+              Welcome to the project of {appName} - the enhanced version of Pega Constellation SDK Sample application!
             </h1>
             <p className='mb-8 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400'>
               This project is made to support your development of using customized UI in Constellation architecture. There are various techniques for

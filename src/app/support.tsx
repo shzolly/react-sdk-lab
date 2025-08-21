@@ -1,11 +1,9 @@
-/* eslint-disable no-console */
 import { useState } from 'react';
 import { HoverCard, HoverCardContent, HoverCardTrigger } from '../design-system/ui/hover-card';
 import { Button } from '../design-system/ui/button';
 import Header from './components/header';
 import Footer from './components/footer';
 import classNames from 'classnames';
-import { getSdkConfig } from '@pega/auth/lib/sdk-auth-manager';
 import useConstellation from '../hooks/useConstellation';
 import Loading from './components/loading';
 import { Alert, AlertTitle, Link } from '@mui/material';
@@ -14,6 +12,7 @@ export default function Support() {
   const [showPega, setShowPega] = useState('Info'); // Info, Pega, Confirmation
   const [caseId, setCaseId] = useState('');
   const isPegaReady = useConstellation();
+  // console.log('isPegaReady', isPegaReady);
 
   const handleCaseComplete = eventPayload => {
     setShowPega('Confirmation');
@@ -21,33 +20,31 @@ export default function Support() {
   };
 
   const handleCaseCancel = () => {
-    console.log('Case Cancelled');
+    // console.log('Case Cancelled');
     setShowPega('Info');
   };
 
   function handleCreateCase() {
     setShowPega('Pega');
-    getSdkConfig().then(sdkConfig => {
-      let mashupCaseType = 'RST-MediaCoPlus-Work-Support';
-      if (!mashupCaseType) {
-        const caseTypes = (PCore.getEnvironmentInfo() as any).environmentInfoObject.pyCaseTypeList;
-        mashupCaseType = caseTypes[1].pyWorkTypeImplementationClassName;
-        console.log('mashupCaseType', caseTypes);
-      }
+    let mashupCaseType = 'RST-MediaCoPlus-Work-Support';
+    if (!mashupCaseType) {
+      const caseTypes = (PCore.getEnvironmentInfo() as any).environmentInfoObject.pyCaseTypeList;
+      mashupCaseType = caseTypes[1].pyWorkTypeImplementationClassName;
+      // console.log('mashupCaseType', caseTypes);
+    }
 
-      const options: any = {
-        pageName: 'pyEmbedAssignment',
-        startingFields: {}
-      };
-      (PCore.getMashupApi().createCase(mashupCaseType, PCore.getConstants().APP.APP, options) as any).then(() => {
-        console.log('createCase rendering is complete');
-      });
-
-      const constants = PCore.getConstants();
-
-      PCore.getPubSubUtils().subscribe(constants.PUB_SUB_EVENTS.CASE_EVENTS.END_OF_ASSIGNMENT_PROCESSING, handleCaseComplete, 'CaseComplete');
-      PCore.getPubSubUtils().subscribe(constants.PUB_SUB_EVENTS.EVENT_CANCEL, handleCaseCancel, 'CaseCancel');
+    const options: any = {
+      pageName: 'pyEmbedAssignment',
+      startingFields: {}
+    };
+    (PCore.getMashupApi().createCase(mashupCaseType, PCore.getConstants().APP.APP, options) as any).then(() => {
+      // console.log('createCase rendering is complete');
     });
+
+    const constants = PCore.getConstants();
+
+    PCore.getPubSubUtils().subscribe(constants.PUB_SUB_EVENTS.CASE_EVENTS.END_OF_ASSIGNMENT_PROCESSING, handleCaseComplete, 'CaseComplete');
+    PCore.getPubSubUtils().subscribe(constants.PUB_SUB_EVENTS.EVENT_CANCEL, handleCaseCancel, 'CaseCancel');
   }
 
   return (
@@ -97,15 +94,14 @@ export default function Support() {
                   </HoverCardContent>
                 </HoverCard>
               </div>
-              <div className='flex flex-row align-middle items-center justify-center'>
-                {isPegaReady ? (
-                  <div
-                    id='pega-root'
-                    className={classNames('flex-grow w-full max-w-3xl', { hidden: showPega === 'Confirmation' || showPega === 'Info' })}
-                  />
-                ) : (
-                  <Loading />
-                )}
+              <div className='flex flex-row align-middle items-center justify-center relative'>
+                <div
+                  id='pega-root'
+                  className={classNames('flex-grow w-full max-w-3xl', {
+                    hidden: showPega === 'Confirmation' || showPega === 'Info'
+                  })}
+                />
+                {!isPegaReady && <Loading />}
               </div>
               <div
                 id='incident-confirmation'

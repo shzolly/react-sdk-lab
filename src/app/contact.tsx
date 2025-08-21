@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import Header from './components/header';
 import { Input } from '../design-system/ui/input';
 import { Textarea } from '../design-system/ui/textarea';
@@ -43,11 +42,12 @@ const Contact = () => {
       'app/primary_1'
     )
       .then((response: any) => {
-        console.log('invokeCustomRestApi response:', response);
+        // console.log('invokeCustomRestApi response:', response);
         setCaseID(response.data.ID.split(' ')[1]); // if respond ID is 'RST-MEDIACOPLUS-WORK I-1011', display 'I-1011'
       })
       .catch(error => {
-        console.log('invokeCustomRestApi error:', error);
+        // console.log('invokeCustomRestApi error:', error);
+        throw new Error('Error', error);
       });
   }
 
@@ -157,6 +157,11 @@ const Contact = () => {
                   <p className='mb-t lg:mt-16 font-light text-center text-gray-500 dark:text-gray-400 text-lg'>
                     Please use Case ID in any following conversation.
                   </p>
+                  <div>
+                    <Link href='#' underline='always'>
+                      Go Back
+                    </Link>
+                  </div>
                 </div>
               )}
             </div>

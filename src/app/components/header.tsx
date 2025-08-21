@@ -15,7 +15,7 @@ const Header = () => {
       <nav className='bg-gray-100 border-gray-200 px-4 lg:px-6 py-2.5 dark:bg-gray-900'>
         <div className='flex flex-wrap justify-between items-center mx-auto max-w-screen-xl'>
           <a href='/' className='flex items-center'>
-            <img src='assets/img/logo.webp' className='w-60 h-16' />
+            <img src='assets/img/logo.webp' alt='MediaCo+' className='w-60 h-16' />
           </a>
           <div className='flex items-center gap-4 lg:order-2'>
             <ThemeSwitch />
@@ -27,6 +27,7 @@ const Header = () => {
               aria-controls='mobile-menu-2'
               onClick={() => setIsMobileMenuOpen(!isMobleMenuOpen)}
               aria-expanded='false'
+              aria-label='Toggle main menu'
             >
               <span className='sr-only'>Open main menu</span>
               {isMobleMenuOpen ? (

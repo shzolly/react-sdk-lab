@@ -1,4 +1,4 @@
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router';
 import Header from './components/header';
 import Footer from './components/footer';
 import { Button } from '../design-system/ui/button';
@@ -85,8 +85,8 @@ export default function Availability() {
               )}
             </div>
             <div className='flex flex-col mb-8 lg:mb-16 space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4'>
-              <Button variant='default' onClick={() => navigate('/package')}>
-                Shop Package
+              <Button variant='default' onClick={() => navigate('/inventory')}>
+                Shop Inventory
               </Button>
               <Button variant='secondary' onClick={() => navigate('/')}>
                 Go back

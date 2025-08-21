@@ -15,7 +15,7 @@ const MessageCenter = () => {
     if (isPegaReady) {
       (PCore.getMashupApi().openPage('pyWorklist', 'Data-Portal') as any).then(() => {});
       setShowPega('Pega');
-      console.log('MessageCenter-IsPegaReady', isPegaReady);
+      // console.log('MessageCenter-IsPegaReady', isPegaReady);
     }
   }, [isPegaReady]);
 
@@ -47,7 +47,8 @@ const MessageCenter = () => {
         </section>
         <section className='bg-white dark:bg-gray-900'>
           <div className='py-4 px-4 mx-auto max-w-screen-xl text-center lg:py-8 lg:px-12'>
-            {isPegaReady ? <div id='pega-root' className={classNames('', { hidden: showPega !== 'Pega' })} /> : <Loading />}
+            <div id='pega-root' className={classNames('', { hidden: showPega !== 'Pega' })} />
+            {!isPegaReady && <Loading />}
           </div>
         </section>
       </div>

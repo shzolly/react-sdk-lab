@@ -1,7 +1,7 @@
 // from react_root.js
-import { render } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import './common.css';
-import { Routes, Route, BrowserRouter } from 'react-router-dom';
+import { Routes, Route, BrowserRouter } from 'react-router';
 
 import Home from './app/home';
 import Availability from './app/availability';
@@ -14,16 +14,13 @@ import Support from './app/support';
 import MessageCenter from './app/messagecenter';
 
 const baseURL = '/';
+let root: any = null;
 
 const outletElement = document.getElementById('outlet');
 if (outletElement) {
-  render(
-    <BrowserRouter
-      future={{
-        v7_startTransition: true,
-        v7_relativeSplatPath: true
-      }}
-    >
+  root = createRoot(outletElement); // <-- Use createRoot
+  root.render(
+    <BrowserRouter>
       <Routes>
         <Route path={`${baseURL}`} element={<Home />} />
         <Route path={`${baseURL}index.html`} element={<Home />} />
@@ -35,14 +32,16 @@ if (outletElement) {
         <Route path={`${baseURL}support`} element={<Support />} />
         <Route path={`${baseURL}contact`} element={<Contact />} />
         <Route path={`${baseURL}messagecenter`} element={<MessageCenter />} />
-        <Route path='*' element={<Home />} /> {/* <-- fix: render a component */}
+        <Route path='*' element={<Home />} />
       </Routes>
-    </BrowserRouter>,
-    document.getElementById('outlet')
+    </BrowserRouter>
   );
 }
 
 document.addEventListener('SdkLoggedOut', () => {
+  if (root) {
+    root.unmount();
+  }
   const thePegaRoot = document.getElementById('pega-root');
   if (thePegaRoot) {
     thePegaRoot.innerHTML = '';
