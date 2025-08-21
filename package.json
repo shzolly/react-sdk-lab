@@ -53,7 +53,8 @@
     "_internal-test-functional": "npm run test:functional:local:sdk-r --prefix node_modules/@pega/dx-component-builder-sdk",
     "_internal-build-jest-assets": "dx-component-builder-sdk buildJestAssets",
     "predeploy": "npm run build:prod",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist",
+    "build:vercel": "npm run build:prod"
   },
   "dependencies": {
     "@emotion/react": "^11.13.3",
