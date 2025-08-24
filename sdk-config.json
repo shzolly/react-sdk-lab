@@ -19,10 +19,10 @@
   },
 
   "serverConfig": {
-    "apiServer": "https://frontend-app.pega.net/prweb",
+    "apiServer": "https://localhost:1080/prweb",
 
     "infinityRestServerUrl_comment": "Full path to Infinity REST server",
-    "infinityRestServerUrl": "https://frontend-app.pega.net/prweb",
+    "infinityRestServerUrl": "https://localhost:1080/prweb",
 
     "appAlias_comment": "appAlias of the application which operators will be accessing (e.g., MediaCo)",
     "appAlias": "MediaCoPlus",
