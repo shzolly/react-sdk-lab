@@ -10,6 +10,7 @@ This repository provides a sample app MediaCo+ (an enhanced version of MediaCo) 
 ---------------
 
 - **Pega Infinity Server**: Ensure you have access to a Pega Infinity '24.2. SDK-R v24.2.11 is only compatible with Pega Infinity '24.2.
+- **MediaCo+ Pega Package**: Find the zip file under <Repo>/assets/MediaCoPlus_20250824.zip
 - **Node and npm**: Node.js + NPM + Storybook.
 - **Git**: Optional but highly recommended.
 
